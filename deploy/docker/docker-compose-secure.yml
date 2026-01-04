@@ -256,8 +256,8 @@ services:
       - TRAEFIK_LOG_LEVEL=INFO
       - TRAEFIK_ACCESSLOG=true
     ports:
-      - "80:80"
-      - "443:443"
+      - "8000:80"
+      - "4443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - traefik-letsencrypt:/letsencrypt
@@ -272,6 +272,8 @@ services:
     image: ghcr.io/supercheck-io/supercheck/app:1.2.1-canary.25
     expose:
       - "3000"
+    ports:
+      - "3000:3000"
     environment:
       <<: *common-env
       # App-specific configuration (inherits all common env vars)
@@ -379,7 +381,7 @@ services:
         # Worker spawns containers with 1.5 CPU + 2GB RAM
         limits:
           cpus: "1.8"
-          memory: 3G
+          memory: 5G
         reservations:
           cpus: "0.5"
           memory: 1G
@@ -419,7 +421,7 @@ services:
       resources:
         limits:
           cpus: "1.0"
-          memory: 1.5G
+          memory: 8G
         reservations:
           cpus: "0.5"
           memory: 1G
@@ -452,7 +454,7 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: 512M
+          memory: 4G
         reservations:
           cpus: "0.25"
           memory: 256M
@@ -478,7 +480,7 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: 1G
+          memory: 4G
         reservations:
           cpus: "0.25"
           memory: 512M
