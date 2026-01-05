@@ -417,6 +417,8 @@ services:
       - POSTGRES_DB=${DB_NAME:-supercheck}
     volumes:
       - postgres-data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
