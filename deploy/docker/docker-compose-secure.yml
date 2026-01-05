@@ -355,7 +355,8 @@ services:
     init: true
     environment:
       <<: *common-env
-      # Worker-specific configuration (inherits all common env vars)
+      # Worker-specific configuration (inherits all common env vars)\
+      WORKER_IMAGE: ${WORKER_IMAGE:-ghcr.io/supercheck-io/supercheck/worker:1.2.1-canary.25}
 
     volumes:
       # Mount Docker socket for container-based execution
